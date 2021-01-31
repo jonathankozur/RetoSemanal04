@@ -1,0 +1,28 @@
+:root {
+  --primarioOscuro: #d7873b;
+  --primario: #fd9f45;
+  --primarioClaro: #ffb74f;
+  --Primariotexto: #3a3a3a;
+
+  --secundarioOscuro: #6e3a58;
+  --secundario: #9e6685;
+  --secundarioClaro: #d094b5;
+  --secundarioTexto: #3a3a3a;
+
+  --neutro: #e0e0e0;
+  --sombra: #424242;
+
+  --agregar: #aeea00;
+  --agregarClaro: #e4ff54;
+  --agregarTexto: #424242;
+
+  --salir: #ff1744;
+  --salirClaro: #ff616f;
+  --salirTexto: #424242;
+
+  --fruta: #ffe57f;
+  --carne: #ff8a80;
+  --verdura: #b9f6ca;
+  --lacteo: #e1f5fe;
+  --sustancia: #d7ccc8;
+}

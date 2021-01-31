@@ -1,0 +1,45 @@
+.color-change-2x {
+  animation: color-change-2x 2s linear infinite alternate both;
+}
+.tracking-in-expand {
+  animation: tracking-in-expand 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) both;
+}
+.tracking-out-contract {
+  animation: tracking-out-contract 1.5s cubic-bezier(0.55, 0.085, 0.68, 0.53)
+    both;
+}
+
+@keyframes color-change-2x {
+  0% {
+    background: var(--primarioClaro);
+  }
+  100% {
+    background: var(--primarioOscuro);
+  }
+}
+
+@keyframes tracking-in-expand {
+  0% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes tracking-out-contract {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+}

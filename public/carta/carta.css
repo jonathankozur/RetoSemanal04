@@ -1,0 +1,33 @@
+.carta {
+  width: 100%;
+  height: 100%;
+  background-color: var(--primario);
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+.carta__imagen {
+  width: auto;
+  height: 60%;
+  margin: 10px 0px 10px 0px;
+  border-radius: 20px;
+  background: var(--primario);
+  box-shadow: 20px 20px 60px var(--primarioOscuro),
+    -20px -20px 60px var(--primarioClaro);
+}
+.carta__titulo {
+  width: 60%;
+  padding: 10px;
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: 20px 20px 60px var(--primarioOscuro),
+    -20px -20px 60px var(--primarioClaro);
+}
+.carta__mensaje {
+  width: 80%;
+  padding: 15px;
+  border-radius: 20px;
+  box-shadow: 20px 20px 60px var(--primarioOscuro),
+    -20px -20px 60px var(--primarioClaro);
+}

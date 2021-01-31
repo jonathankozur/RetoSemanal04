@@ -1,0 +1,23 @@
+.body {
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 100vw;
+  max-width: 425px;
+  height: 100vh;
+  background-color: var(--primario);
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.off {
+  display: none;
+}

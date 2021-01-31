@@ -1,0 +1,24 @@
+/* <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"> </script> --> */
+
+.body {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffffd2;
+}
+
+.container {
+  border-radius: 30px;
+  background: linear-gradient(145deg, #e6e0b0, #ffffd2);
+  box-shadow: 10px 10px 40px #e6e0b0, -10px -10px 40px #ffffd8;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 350px;
+  height: 350px;
+}
