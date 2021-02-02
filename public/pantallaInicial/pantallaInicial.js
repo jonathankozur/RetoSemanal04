@@ -36,7 +36,7 @@ export default class PantallaInicial {
 
     divInicio.classList.add("inicio");
     unTitulo.classList.add("inicio__titulo");
-    unTitulo.textContent = "Sakura card Captors";
+    unTitulo.textContent = "Oracle of Clow Cards";
     unForm.classList.add("inicio__formulario");
     unBoton.classList.add("inicio__empezar");
     unBoton.textContent = "Voy a tener suerte";

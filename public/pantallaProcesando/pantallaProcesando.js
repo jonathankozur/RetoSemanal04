@@ -1,4 +1,4 @@
-export default class Procesando {
+export default class pantallaProcesando {
   constructor() {
     this.modelo = this.modelo();
   }

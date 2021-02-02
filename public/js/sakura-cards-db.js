@@ -17,9 +17,9 @@ let cards = [
     group: "Red",
     summary: "As usual, let nature take its course.",
     message:
-      "Your energy is low, so stop trying to make your schedule full to bursting with visits to/from friends/relatives/acquaintances and take a day off from socializing so you can rest. Even if you lead a fast-paced life, you still need to find the time to take a deep breath and relax.<br />As you dont have a lot of energy, instead of trying to fit into your friends/company, leave some time for yourself to calm down. Even if you lead a very busy life, leave some time for yourself to take a deep breath and rest.",
+      "As you dont have a lot of energy, instead of trying to fit into your friends/company, leave some time for yourself to calm down. Even if you lead a very busy life, leave some time for yourself to take a deep breath and rest.",
     warning:
-      "Haste makes waste. The truth is, you need to accept your situation and save your energy for the next step.<br />Haste makes waste. Accept the current situation. Save your energy for the next big step.",
+      "Haste makes waste. The truth is, you need to accept your situation and save your energy for the next step. Haste makes waste. Accept the current situation. Save your energy for the next big step.",
   },
   {
     id: 2,
@@ -50,9 +50,9 @@ let cards = [
     group: "Red",
     summary: "Hints of progress. Enrichment. Anticipation.",
     message:
-      "A time of change and activity. The possibility of getting meaningful information is big. Observe the situation around you with caution more than you usually would. A decision is important at this time and place.<br />This is the time for you to change and move forward. You may receive significant information. Pay attention to your surroundings. Once you have set your target/goal, work towards it at once.",
+      "A time of change and activity. The possibility of getting meaningful information is big. Observe the situation around you with caution more than you usually would. A decision is important at this time and place. This is the time for you to change and move forward. You may receive significant information. Pay attention to your surroundings. Once you have set your target/goal, work towards it at once.",
     warning:
-      "If you have the urge to call someone names or to lash out at someone verbally, hold it back. If you don’t, both parties will go through a painful experience.<br />Dont be a parrot{ and repeat what others say}. Be creative. Dont be capricious. Be mindful of what you say.",
+      "If you have the urge to call someone names or to lash out at someone verbally, hold it back. If you don’t, both parties will go through a painful experience. Dont be a parrot{ and repeat what others say}. Be creative. Dont be capricious. Be mindful of what you say.",
   },
   {
     id: 5,
@@ -274,9 +274,9 @@ let cards = [
     group: "Red",
     summary: "Choose your decisions carefully. Judge firmly and impartially",
     message:
-      "Your ability to make decisions wisely is questioned. Relax and open your heart before judging a situation. If you make the best decision, your heart will be at ease.<br />You need to have strong judgement. Relax and open your inner self before you judge. If you make the best decision, you will be able to set your mind at rest.",
+      "Your ability to make decisions wisely is questioned. Relax and open your heart before judging a situation. If you make the best decision, your heart will be at ease. You need to have strong judgement. Relax and open your inner self before you judge. If you make the best decision, you will be able to set your mind at rest.",
     warning:
-      "Your heart determines whether your luck will rise or fall. Happy and optimistic people attract other people, and good luck is sure to follow.<br />Your heart determines your luck. People who are happy and optimistic will attract the attention and presence of other people, and thus, good luck will follow.",
+      "Your heart determines whether your luck will rise or fall. Happy and optimistic people attract other people, and good luck is sure to follow. Your heart determines your luck. People who are happy and optimistic will attract the attention and presence of other people, and thus, good luck will follow.",
   },
   {
     id: 25,
@@ -529,9 +529,9 @@ let cards = [
     group: "Red",
     summary: "Full of affection. The blooming of passion.",
     message:
-      "When you express your thoughts and emotions, you feel at ease. You will experience increased creativity in the fields of art and music. Inspiration and wonderful ideas will come as a result of focusing in these two fields.<br />Express your opinion and affection. Stay close to art and music, as these can cause you to be more creative; you may even get some great ideas as a result.",
+      "When you express your thoughts and emotions, you feel at ease. You will experience increased creativity in the fields of art and music. Inspiration and wonderful ideas will come as a result of focusing in these two fields. Express your opinion and affection. Stay close to art and music, as these can cause you to be more creative; you may even get some great ideas as a result.",
     warning:
-      "Don’t allow yourself to be restricted by traditional concepts or rules. Follow your intuition and act accordingly—the possibility of unexpected discoveries or encounters will be high.<br />Dont get tied down by traditional rules and ideas, and instead act according to your instincts; it may just bring you unexpected discoveries or meetings{with someone}.",
+      "Don’t allow yourself to be restricted by traditional concepts or rules. Follow your intuition and act accordingly—the possibility of unexpected discoveries or encounters will be high. Dont get tied down by traditional rules and ideas, and instead act according to your instincts; it may just bring you unexpected discoveries or meetings{with someone}.",
   },
   {
     id: 48,
@@ -673,7 +673,7 @@ var spreads = [
     description:
       "When you want to see what your compatibility is with a specific person.",
     method:
-      "Shuffle and cut the Clow Cards while imagining the name of the person you want to do the reading for. {If you are doing a reading for you and someone else, think of the other person. If youre doing a reading for another couple, think of the two of them.}||Gather the cards up so they are lying pattern-side up. Spread the cards out surface-side up in a 1 card-length line, going from left to right.||Now, the card-surface designs are classified into 4 different groups. When 2 cards of the same group are side-by-side, remove them. Repeat this procedure until there are no more cards to take away.||The fewer the cards that are left remaining, the better the compatibility!||The compatibility is based on the number of cards that are left remaining:<br />0-10 cards = considerably good compatibility<br />11-20 cards = slightly good compatibility<br />21-30 cards = normal compatibility<br />31-40 cards = compatibility is slightly bad<br />41-50 cards = compatibility is considerably bad<br /><br />Group Classifications:<br /> Red Group: <br />CLOUD CREATE DARK FIREY LIGHT MIST RAIN SNOW   <br /> STORM THUNDER WATERY WAVE WINDY <br />  <br /> Green Group:  <br /> BIG DREAM GLOW ILLUSION LITTLE MAZE POWER   <br /> SILENT SONG SWEET TIME TWIN VOICE  <br />   <br /> Blue Group:  <br /> CHANGE DASH ERASE FIGHT FLOAT FLY FREEZE   <br /> JUMP MOVE RETURN SHOT SLEEP THROUGH   <br />  <br /> Purple Group:  <br /> ARROW BUBBLES EARTHY FLOWER LIBRA LOCK LOOP   <br /> MIRROR SAND SHADOW SHIELD SWORD WOOD||In the case of remaining cards, the card mostly to the left in the line of cards will show the cause of deteriorating compatibility and the card mostly to the right in the line of cards will show a method for a good relationship.||If no cards are remaining,  that means best compatibility!",
+      "Shuffle and cut the Clow Cards while imagining the name of the person you want to do the reading for. {If you are doing a reading for you and someone else, think of the other person. If youre doing a reading for another couple, think of the two of them.}||Gather the cards up so they are lying pattern-side up. Spread the cards out surface-side up in a 1 card-length line, going from left to right.||Now, the card-surface designs are classified into 4 different groups. When 2 cards of the same group are side-by-side, remove them. Repeat this procedure until there are no more cards to take away.||The fewer the cards that are left remaining, the better the compatibility!||The compatibility is based on the number of cards that are left remaining: 0-10 cards = considerably good compatibility 11-20 cards = slightly good compatibility 21-30 cards = normal compatibility 31-40 cards = compatibility is slightly bad 41-50 cards = compatibility is considerably bad  Group Classifications:  Red Group:  CLOUD CREATE DARK FIREY LIGHT MIST RAIN SNOW     STORM THUNDER WATERY WAVE WINDY      Green Group:    BIG DREAM GLOW ILLUSION LITTLE MAZE POWER     SILENT SONG SWEET TIME TWIN VOICE        Blue Group:    CHANGE DASH ERASE FIGHT FLOAT FLY FREEZE     JUMP MOVE RETURN SHOT SLEEP THROUGH        Purple Group:    ARROW BUBBLES EARTHY FLOWER LIBRA LOCK LOOP     MIRROR SAND SHADOW SHIELD SWORD WOOD||In the case of remaining cards, the card mostly to the left in the line of cards will show the cause of deteriorating compatibility and the card mostly to the right in the line of cards will show a method for a good relationship.||If no cards are remaining,  that means best compatibility!",
     cards: "What deteriorates compatibility||Method for a good relationship",
     cards_num: "2",
   },
