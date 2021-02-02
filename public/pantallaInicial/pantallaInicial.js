@@ -15,6 +15,7 @@ export default class PantallaInicial {
     unInput.id = "jugador" + nroJugador;
     unInput.placeholder = "jugador " + nroJugador;
     unInput.setAttribute("required", true);
+    unInput.setAttribute("maxlength",20);
     unLabel.for = "jugador" + nroJugador;
     unLabel.textContent = "Como se llama?";
     divValid.classList.add("valid-tooltip");

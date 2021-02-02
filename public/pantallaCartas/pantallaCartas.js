@@ -1,27 +1,12 @@
 import { cards } from "../js/sakura-cards-db.js";
 export default class PantallaCartas {
-  constructor(nombreJugadores, cantidadCartas) {
-    let cantidadJugadores = nombreJugadores.length;
-    let jugadores = Array(cantidadJugadores);
-    for (let i = 0; i < cantidadJugadores; i++) {
-      jugadores[i] = new Object();
-      jugadores[i].cartas = Array();
-      while (jugadores[i].cartas.length < cantidadCartas) {
-        let numeroAleatorio = Math.floor(Math.random() * 51);
-        if (jugadores[i].cartas.indexOf(numeroAleatorio) === -1) {
-          jugadores[i].cartas.push(numeroAleatorio);
-        }
-      }
-    }
+    constructor(nombreJugadores,cartasSorteadas) {
     this.nombreJugadores = nombreJugadores;
-    this.cantidadJugadores = cantidadJugadores;
-    this.cantidadCartas = cantidadCartas;
-    this.jugadores = jugadores;
-
-    this.modelo = this.modelo(jugadores);
+    this.cartasSorteadas = cartasSorteadas;
+    this.modelo = this.modelo(cartasSorteadas);
   }
 
-  crearCell(indiceCarta, nombreJugador, numeroCarta) {
+  crearCell(indiceCarta, nombreJugador, numeroCarta, totalCartas) {
     let carta = cards[indiceCarta];
 
     let unCell = document.createElement("div");
@@ -35,7 +20,7 @@ export default class PantallaCartas {
     unCell.setAttribute("data-group", carta.group);
     unJugador.classList.add("carta__jugador");
     unJugador.textContent =
-      nombreJugador + " " + numeroCarta + "/" + this.cantidadCartas;
+      nombreJugador + " " + numeroCarta + "/" + totalCartas;
     unaImagen.classList.add("carta__imagen");
     unaImagen.src = "clow_cards_min/Clow" + carta.name + "-min.jpg";
     unaImagen.alt = "imagen ClowThunder";
@@ -49,17 +34,18 @@ export default class PantallaCartas {
     return unCell;
   }
 
-  modelo(jugadores) {
+  modelo(cartasSorteadas) {
     let unCarousel = document.createElement("div");
     unCarousel.classList.add("carousel");
     unCarousel.classList.add("off");
 
-    jugadores.forEach((jugador, nroJugador) => {
+    cartasSorteadas.forEach((jugador, nroJugador) => {
       jugador.cartas.forEach((indiceCarta, nroCarta) => {
         let unCell = this.crearCell(
           indiceCarta,
           this.nombreJugadores[nroJugador],
-          nroCarta + 1
+          nroCarta + 1,
+          jugador.cartas.length
         );
         unCarousel.append(unCell);
       });

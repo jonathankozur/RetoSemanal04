@@ -3,8 +3,6 @@ import PantallaCartas from "../pantallaCartas/pantallaCartas.js";
 import PantallaProcesando from "../pantallaProcesando/pantallaProcesando.js";
 
 const tiempoPantallaCarga = 1000;
-let cartasPorJugador = 3;
-let jugadores = ["pepe", "sapo"];
 
 function timeOutPromise(tiempo) {
   return new Promise(function (resolve, reject) {
@@ -29,19 +27,18 @@ function esNulo(elemento) {
     valido = false;
   } else {
     elemento.classList.add("is-valid");
-    jugadores.push(elemento.value);
   }
   return valido;
 }
-function validar() {
+function validar(inputs) {
   limpiarValidacion("is-valid");
   limpiarValidacion("is-invalid");
 
   let valido = true;
-  jugadores = Array(0);
-  valido =
-    esNulo(document.getElementById("jugador1")) &
-    esNulo(document.getElementById("jugador2"));
+
+  inputs.forEach(input => {
+    valido = valido&esNulo(input)
+  });
 
   if (valido) {
     limpiarValidacion("is-valid");
@@ -52,31 +49,47 @@ function validar() {
 
 function empezar() {
   return new Promise(function (resolve, reject) {
-    if (!validar()) {
+    let jugador1 = document.getElementById("jugador1")
+    let jugador2 = document.getElementById("jugador2")
+    let inputs = [jugador1, jugador2]
+    let jugadores = Array(0)
+    let cartasPorJugador = 3;
+    if (!validar(inputs)) {
       return reject("Fallo la validación");
     }
+    inputs.forEach(input => {
+      jugadores.push(input.value);
+    });
+
     pantallaInicial.modelo.remove();
-    return resolve("Resolvimos empezar");
+    return resolve({jugadores,cartasPorJugador});
   });
 }
 
-function procesando() {
+function procesando(juego) {
   return new Promise(function (resolve, reject) {
-    let pantallaProcesando = new PantallaProcesando();
+    let pantallaProcesando = new PantallaProcesando(juego.jugadores,juego.cartasPorJugador);
     container.appendChild(pantallaProcesando.modelo);
     container.classList.add("color-change-2x");
     timeOutPromise(tiempoPantallaCarga).then((response) => {
       console.log(response);
       container.classList.remove("color-change-2x");
       pantallaProcesando.modelo.remove();
-      return resolve("Resolvimos Procesando");
+
+      return resolve({
+        jugadores:juego.jugadores,
+        cartasSorteadas:pantallaProcesando.cartasSorteadas
+      });
     });
   });
 }
 
-function cartas() {
+function cartas(juegoSorteado) {
   return new Promise(function (resolve, reject) {
-    let pantallaCartas = new PantallaCartas(jugadores, cartasPorJugador);
+    let pantallaCartas = new PantallaCartas(juegoSorteado.jugadores, juegoSorteado.cartasSorteadas);
+
+    let largoMatriz = (acum,valorActual) =>  acum + valorActual.cartas.length
+    let cantidadCartasTotal = juegoSorteado.cartasSorteadas.reduce(largoMatriz,0)
 
     container.appendChild(pantallaCartas.modelo);
 
@@ -86,10 +99,9 @@ function cartas() {
       let flkty = new Flickity(".carousel", {
         draggable: true,
         setGallerySize: false,
-
         on: {
           change: function (index) {
-            if (jugadores.length * cartasPorJugador == index + 1) {
+            if (cantidadCartasTotal == index + 1) {
               console.log("Llego al final del carrousel");
             }
           },
@@ -97,7 +109,7 @@ function cartas() {
       });
     });
 
-    return resolve("Resolvimos Cartas");
+    return resolve("eso");
   });
 }
 
@@ -112,11 +124,13 @@ let btn_inicio__empezar = document.getElementById("inicio__empezar");
 btn_inicio__empezar.addEventListener("click", () => {
   empezar()
     .then((response) => {
-      console.log(response);
-      procesando().then((response) => {
-        console.log(response);
-        cartas().then((response) => {
-          console.log(response);
+      console.log("Resolvimos empezar()",response);
+      procesando(response)
+    .then((response) => {
+        console.log("Resolvimos procesando()",response);
+        cartas(response)
+    .then((response) => {
+          console.log("Resolvimos cartas()",response);
         });
       });
     })
