@@ -2,13 +2,40 @@
 <html lang="es">
 
 <head>
+  <!-- 
+  Reglas de juego:
+  Cada carta tiene un color asignado (Rojo, Verde, Violeta o Azul).
+  Se reparten 3 cartas por jugador (Está planteado para poder repartir
+  y mostrar mas cartas, pero por cuestiones de tiempo, todavia no esta
+  resuelto el match. Cambiar variable "cartasPorJugador")
+  Se evalua cada carta contra la carta del mismo indice del jugador contrario
+  y en base a eso se determina un valor (-1, 0 o 1)
+  Luego de evaluar las 3 cartas, se suman estos valores parciales
+  Si la suma da positivo, hay MATCH. En caso contrario NO HAY MATCH
+  -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Clow Cards</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <title>Cartas Clow</title>
+
+  <link rel="preload" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+    crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+    as="style" onload="this.onload=null;this.rel='stylesheet'">
+
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Eczar:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Eczar:wght@400;700&display=swap" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Eczar:wght@400;700&display=swap">
+  </noscript>
+
+
+
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous"> -->
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Eczar:wght@400;700&display=swap" rel="stylesheet"> -->
+
   <link rel="stylesheet" href="css/flickity.css" media="screen">
   <link rel="stylesheet" href="css/color.css">
   <link rel="stylesheet" href="pantallaInicial/pantallaInicial.css">
@@ -18,10 +45,49 @@
   <link rel="stylesheet" href="pantallaResultado/pantallaResultado.css">
   <link rel="stylesheet" href="css/styles.css">
   <script src="https://kit.fontawesome.com/90a0636a60.js" crossorigin="anonymous"></script>
+
+  <meta name="description" content="Oráculo de cartas Clow. Jugá con tus amigos, para ver si son compatibles." />
+  <meta name="keywords" content="JUEGO, SAKURA, CARD, ORACULO, MATCH, CLOW" />
+  <meta name="author" content="Jonathan Kozur" />
+  <meta name="copyright" content="KozurJonathan 2021" />
+  <meta name="robots" content="index follow" />
+  <link rel="icon" href="images/favicon-cards.png" type="image/ico" />
+
+  <!-- Facebook -->
+  <meta property="og:url" content="https://summerhack-retosemanal04.web.app/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Cartas Clow" />
+  <meta property="og:description" content="Oráculo de cartas Clow. Jugá con tus amigos, para ver si son compatibles." />
+  <meta property="og:image" content="https://summerhack-retosemanal04.web.app/clow_cards_min/SakuraNameless-min.jpg" />
+  <meta property="fb:app_id" content="693449174673839" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:url" content="https://summerhack-retosemanal04.web.app/" />
+  <meta name="twitter:title" content="Cartas Clow" />
+  <meta name="twitter:description"
+    content="Oráculo de cartas Clow. Jugá con tus amigos, para ver si son compatibles." />
+  <meta name="twitter:image" content="https://summerhack-retosemanal04.web.app/clow_cards_min/SakuraNameless-min.jpg" />
 </head>
 
 <body class="body">
   <section class="container">
+    <!-- INICIO datitos para señor google -->
+    <div itemscope itemtype="https://schema.org/WebApplication">
+      <meta itemprop="name" content="Cartas Clow">
+      <meta itemprop="operatingSystem" content="Windows 10, OSX 10.14.6, Android 10.0">
+      <meta itemprop="applicationCategory" content="Games">
+      <span itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">
+        <meta itemprop="ratingValue" content="5">
+        <meta itemprop="ratingCount" content="8864">
+      </span>
+
+      <span itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+        <meta itemprop="price" content="1.00">
+        <meta itemprop="priceCurrency" content="USD" />
+      </span>
+    </div>
+    <!-- FIN datitos para señor google -->
   </section>
   <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
   <script type="module" src="js/main.js"></script>

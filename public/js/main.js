@@ -7,9 +7,9 @@ import PantallaResultado from "../pantallaResultado/pantallaResultado.js";
 /*****************************************/
 /***********algunas variables*************/
 /*****************************************/
-const tiempoPantallaCarga = 3000;
-const tiempoAparicionModal = 5000;
-
+let tiempoPantallaCarga = 3000;
+let tiempoAparicionModal = 3000;
+let cartasPorJugador = 3;
 /*****************************************/
 /***************Functions*****************/
 /*****************************************/
@@ -62,7 +62,6 @@ function empezar() {
     let jugador2 = document.getElementById("jugador2");
     let inputs = [jugador1, jugador2];
     let jugadores = Array(0);
-    let cartasPorJugador = 3;
     if (!validar(inputs)) {
       return reject("Fallo la validación");
     }
@@ -96,7 +95,7 @@ function procesando(juego) {
   });
 }
 
-function cartas(juegoSorteado,accionesModal) {
+function cartas(juegoSorteado, accionesModal) {
   return new Promise(function (resolve, reject) {
     let pantallaCartas = new PantallaCartas(
       juegoSorteado.jugadores,
@@ -121,7 +120,9 @@ function cartas(juegoSorteado,accionesModal) {
           change: function (index) {
             if (cantidadCartasTotal == index + 1) {
               console.log("Llego al final del carrousel");
-              timeOutPromise(tiempoAparicionModal).then((response) => accionesModal(juegoSorteado));
+              timeOutPromise(tiempoAparicionModal).then((response) =>
+                accionesModal(juegoSorteado)
+              );
             }
           },
         },
@@ -141,13 +142,13 @@ function cartas(juegoSorteado,accionesModal) {
   });
 }
 
-function ModalAccionesJuegoGuardado(juegoSorteado){
+function ModalAccionesJuegoGuardado(juegoSorteado) {
   let acciones = [];
   acciones[0] = {
     label: "Ver resultado",
     accion: () => {
-      resultado(juegoSorteado)
-      document.querySelector('#boton_guardar').classList.add('off')
+      resultado(juegoSorteado);
+      document.querySelector("#boton_guardar").classList.add("off");
     },
   };
   acciones[1] = {
@@ -156,13 +157,13 @@ function ModalAccionesJuegoGuardado(juegoSorteado){
       console.log("Volver a jugar");
       document.querySelector(".modalPopup__fondo").remove();
       document.querySelector(".carousel").remove();
-      volverJugar()
+      volverJugar();
     },
   };
   modalAcciones(acciones);
 }
 
-function ModalAccionesJuegoNuevo(juegoSorteado){
+function ModalAccionesJuegoNuevo(juegoSorteado) {
   let acciones = [];
   acciones[0] = {
     label: "Ver resultado",
@@ -174,7 +175,7 @@ function ModalAccionesJuegoNuevo(juegoSorteado){
       console.log("Volver a jugar");
       document.querySelector(".modalPopup__fondo").remove();
       document.querySelector(".carousel").remove();
-      volverJugar()
+      volverJugar();
     },
   };
   modalAcciones(acciones);
@@ -185,36 +186,39 @@ function modalAcciones(acciones) {
   container.appendChild(modalPopup.modelo);
 }
 
-function resultado(juegoSorteado){
+function resultado(juegoSorteado) {
   console.log("Resultado");
   document.querySelector(".modalPopup__fondo").remove();
   document.querySelector(".carousel").remove();
 
   let accionesPantallaResultado = {
-    salir:()=>{
-      console.log('Salir')
+    salir: () => {
+      console.log("Salir");
       document.querySelector(".resultado").remove();
-      volverJugar()
-      // document.querySelector('#boton_guardar').classList.remove('off')
+      volverJugar();
     },
-    guardar:()=>{
-      console.log('Guardar')
-      let verPartida = ()=>{
-        console.log('Ver partida')
+    guardar: () => {
+      console.log("Guardar");
+      let verPartida = () => {
+        console.log("Ver partida");
         pantallaInicial.modelo.remove();
-        let accion = (juegoSorteado) => ModalAccionesJuegoGuardado(juegoSorteado) /*ModalAccionesJuegoNuevo(juegoSorteado)*/
-        cartas(juegoSorteado,accion)
-      }
-      pantallaInicial.agregarPartida(juegoSorteado,verPartida)
+        let accion = (juegoSorteado) =>
+          ModalAccionesJuegoGuardado(juegoSorteado);
+        cartas(juegoSorteado, accion);
+      };
+      pantallaInicial.agregarPartida(juegoSorteado, verPartida);
       document.querySelector(".resultado").remove();
-      volverJugar()
-    }
-  }
-  let pantallaResultado = new PantallaResultado(juegoSorteado,accionesPantallaResultado);
+      volverJugar();
+    },
+  };
+  let pantallaResultado = new PantallaResultado(
+    juegoSorteado,
+    accionesPantallaResultado
+  );
   container.appendChild(pantallaResultado.modelo);
 }
 
-function volverJugar(){
+function volverJugar() {
   pantallaInicial.inicializar();
   container.appendChild(pantallaInicial.modelo);
 }
@@ -233,8 +237,8 @@ btn_inicio__empezar.addEventListener("click", () => {
       console.log("Resolvimos empezar()", response);
       procesando(response).then((response) => {
         console.log("Resolvimos procesando()", response);
-        let accion = (juegoSorteado) => ModalAccionesJuegoNuevo(juegoSorteado)
-        cartas(response,accion).then((response) => {
+        let accion = (juegoSorteado) => ModalAccionesJuegoNuevo(juegoSorteado);
+        cartas(response, accion).then((response) => {
           console.log("Resolvimos cartas()", response);
         });
       });

@@ -1,13 +1,13 @@
 import { cards } from "../js/sakura-cards-db.js";
 export default class pantallaResultado {
-  constructor(juego,acciones) {
+  constructor(juego, acciones) {
     console.log(juego);
     this.matriz = this.definirMatriz();
     this.cartasSorteadas = juego.cartasSorteadas;
     this.nombreJugadores = juego.jugadores;
     this.ganador = this.resultado(juego.cartasSorteadas);
-    this.acciones = acciones
-    this.modelo = this.modelo(juego.cartasSorteadas,acciones);
+    this.acciones = acciones;
+    this.modelo = this.modelo(juego.cartasSorteadas, acciones);
   }
   definirMatriz() {
     /*red > green */
@@ -72,17 +72,10 @@ export default class pantallaResultado {
       let cartaJugador2 = cards[cartasSorteadas[1].cartas[nroCarta]];
       resultado += this.matchColores(cartaJugador1.group, cartaJugador2.group);
     });
-    // if (resultado < 0) {
-    //   ganador = "Ganó " + this.nombreJugadores[0];
-    // } else if (resultado > 0) {
-    //   ganador = "Ganó " + this.nombreJugadores[1];
-    // } else {
-    //   ganador = "Empate";
-    // }
-    if (resultado>0){
-      ganador = 'MATCH'
-    }else{
-      ganador = 'NO MATCH'
+    if (resultado > 0) {
+      ganador = "MATCH";
+    } else {
+      ganador = "NO MATCH";
     }
     return ganador;
   }
@@ -90,22 +83,22 @@ export default class pantallaResultado {
   cartasJugador(contenedor, jugador) {
     jugador.cartas.forEach((indiceCarta, nroCarta) => {
       let carta = cards[indiceCarta];
-      let cartaContainer = document.createElement('div')
+      let cartaContainer = document.createElement("div");
       let imagen = document.createElement("img");
-      let hoverImagen = document.createElement('div')
+      let hoverImagen = document.createElement("div");
 
-      cartaContainer.classList.add('cartas__container')
+      cartaContainer.classList.add("cartas__container");
       imagen.classList.add("cartas__carta");
       imagen.src = "clow_cards_min/Clow" + carta.name + "-min.jpg";
       imagen.alt = "imagen Clow" + carta.name;
-      hoverImagen.classList.add('cartas__tipo','cartas__tipo--'+carta.group)
+      hoverImagen.classList.add("cartas__tipo", "cartas__tipo--" + carta.group);
 
-      cartaContainer.append(imagen,hoverImagen)
+      cartaContainer.append(imagen, hoverImagen);
       contenedor.appendChild(cartaContainer);
     });
   }
 
-  modelo(cartasSorteadas,acciones) {
+  modelo(cartasSorteadas, acciones) {
     let resultado = document.createElement("div");
     let jugador1 = document.createElement("h3");
     let jugador2 = document.createElement("h3");
@@ -130,13 +123,12 @@ export default class pantallaResultado {
     this.cartasJugador(cartasJugador2, cartasSorteadas[1]);
     botonera.classList.add("resultado__botonera");
     botonGuardar.classList.add("botonera__boton");
-    botonGuardar.id = 'boton_guardar'
+    botonGuardar.id = "boton_guardar";
     botonGuardar.textContent = "Guardar";
     botonSalir.classList.add("botonera__boton");
     botonSalir.textContent = "Salir";
     botonGuardar.addEventListener("click", () => acciones.guardar());
     botonSalir.addEventListener("click", () => acciones.salir());
-
 
     botonera.append(botonGuardar, botonSalir);
 

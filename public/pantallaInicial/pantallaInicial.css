@@ -1,29 +1,31 @@
-.inicio{
+.inicio {
   display: flex;
-      flex-flow: column nowrap;
-      justify-content: center;
-      align-items: center;
-      width: 90%;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
 }
 
-.inicio__formulario{
+.inicio__formulario {
   width: 100%;
   display: flex;
-      flex-flow: column nowrap;
-      justify-content: center;
-      align-items: center;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
 }
 .inicio__titulo {
   margin-bottom: 0px;
   font-weight: bold;
   line-height: 15px;
+  font-size: 40px;
 }
 
-.inicio__subtitulo{
+.inicio__subtitulo {
   letter-spacing: 3px;
+  font-size: 18px;
 }
 
-.inicio__jugador{
+.inicio__jugador {
   width: 80%;
 }
 .inicio__input {
@@ -78,14 +80,14 @@
 .inicio__empezar:active {
   animation: shadow-drop-2-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   background: linear-gradient(145deg, #8e5c78, #a96d8e);
-  outline:none
+  outline: none;
 }
 
-.inicio__empezar:focus{
-  outline:none
+.inicio__empezar:focus {
+  outline: none;
 }
 
-.inicio__partidas--titulo{
+.inicio__partidas--titulo {
   width: 80%;
   height: 50px;
   margin: 20px 0px 10px 0px;
@@ -100,7 +102,7 @@
   font-size: 20px;
   font-weight: bold;
 }
-.partidas{
+.partidas {
   padding: 0px;
   width: 80%;
   display: flex;
@@ -108,10 +110,10 @@
   justify-content: center;
   align-items: center;
 }
-.partidas__partida{
-list-style: none;
-border: none;
-width: 80%;
+.partidas__partida {
+  list-style: none;
+  border: none;
+  width: 80%;
   height: 40px;
   font-size: 15px;
   display: flex;
@@ -120,11 +122,11 @@ width: 80%;
   align-items: center;
   padding: 5px 15px 5px 15px;
   margin-top: 10px;
-border-radius: 20px;
+  border-radius: 20px;
   background: linear-gradient(145deg, #a96d8e, #8e5c78);
   box-shadow: 9px 9px 18px #d7873b, -9px -9px 18px #ffb74f;
 }
-.partidas__partida--nombre{
+.partidas__partida--nombre {
   font-size: 15px;
   padding: 0px;
   margin: 0px;
@@ -138,11 +140,11 @@ border-radius: 20px;
 .partidas__partida:active {
   animation: shadow-drop-2-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   background: linear-gradient(145deg, #8e5c78, #a96d8e);
-  outline:none
+  outline: none;
 }
 
-.partidas__partida:focus{
-  outline:none
+.partidas__partida:focus {
+  outline: none;
 }
 
 @keyframes shadow-drop-2-center {
