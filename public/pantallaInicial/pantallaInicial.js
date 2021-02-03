@@ -59,6 +59,7 @@ export default class PantallaInicial {
   modelo() {
     let divInicio = document.createElement("div");
     let unTitulo = document.createElement("h1");
+    let unSubtitulo = document.createElement('p')
     let unForm = document.createElement("form");
     let inputJugador1 = this.inputJugador(1);
     let inputJugador2 = this.inputJugador(2);
@@ -67,6 +68,8 @@ export default class PantallaInicial {
     divInicio.classList.add("inicio");
     unTitulo.classList.add("inicio__titulo");
     unTitulo.textContent = "Cartas Clow";
+    unSubtitulo.classList.add('inicio__subtitulo')
+    unSubtitulo.textContent = 'Sakura Card Captors'
     unForm.classList.add("inicio__formulario");
     unBoton.classList.add("inicio__empezar");
     unBoton.textContent = "Voy a tener suerte";
@@ -84,7 +87,7 @@ export default class PantallaInicial {
     partidas.classList.add('off')
 
     unForm.append(inputJugador1, inputJugador2, unBoton);
-    divInicio.append(unTitulo, unForm, partidas_titulo, partidas);
+    divInicio.append(unTitulo, unSubtitulo, unForm, partidas_titulo, partidas);
 
     return divInicio;
   }

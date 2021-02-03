@@ -7,8 +7,8 @@ import PantallaResultado from "../pantallaResultado/pantallaResultado.js";
 /*****************************************/
 /***********algunas variables*************/
 /*****************************************/
-const tiempoPantallaCarga = 1000;
-const tiempoAparicionModal = 1000;
+const tiempoPantallaCarga = 3000;
+const tiempoAparicionModal = 5000;
 
 /*****************************************/
 /***************Functions*****************/

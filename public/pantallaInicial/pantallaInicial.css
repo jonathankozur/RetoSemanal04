@@ -14,10 +14,15 @@
       align-items: center;
 }
 .inicio__titulo {
-  margin-bottom: 40px;
-  font-family: 'Eczar', serif;
+  margin-bottom: 0px;
   font-weight: bold;
+  line-height: 15px;
 }
+
+.inicio__subtitulo{
+  letter-spacing: 3px;
+}
+
 .inicio__jugador{
   width: 80%;
 }
@@ -73,6 +78,11 @@
 .inicio__empezar:active {
   animation: shadow-drop-2-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   background: linear-gradient(145deg, #8e5c78, #a96d8e);
+  outline:none
+}
+
+.inicio__empezar:focus{
+  outline:none
 }
 
 .inicio__partidas--titulo{
@@ -84,9 +94,11 @@
   justify-content: center;
   align-items: center;
   padding: 15px 0px 15px 0px;
-border-radius: 20px;
-background: #fd9f45;
-box-shadow: 10px 10px 20px #d7873b, -10px -10px 20px #ffb74f;
+  border-radius: 20px;
+  background: #fd9f45;
+  box-shadow: 10px 10px 20px #d7873b, -10px -10px 20px #ffb74f;
+  font-size: 20px;
+  font-weight: bold;
 }
 .partidas{
   padding: 0px;
@@ -120,11 +132,17 @@ border-radius: 20px;
 }
 .partidas__partida:hover {
   background: #9e6685;
+  cursor: pointer;
 }
 
 .partidas__partida:active {
   animation: shadow-drop-2-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   background: linear-gradient(145deg, #8e5c78, #a96d8e);
+  outline:none
+}
+
+.partidas__partida:focus{
+  outline:none
 }
 
 @keyframes shadow-drop-2-center {
