@@ -2,10 +2,17 @@ import PantallaInicial from "../pantallaInicial/pantallaInicial.js";
 import PantallaCartas from "../pantallaCartas/pantallaCartas.js";
 import PantallaProcesando from "../pantallaProcesando/pantallaProcesando.js";
 import ModalPopup from "../modalPopup/modalPopup.js";
+import PantallaResultado from "../pantallaResultado/pantallaResultado.js";
 
+/*****************************************/
+/***********algunas variables*************/
+/*****************************************/
 const tiempoPantallaCarga = 1000;
 const tiempoAparicionModal = 1000;
 
+/*****************************************/
+/***************Functions*****************/
+/*****************************************/
 function timeOutPromise(tiempo) {
   return new Promise(function (resolve, reject) {
     setTimeout(() => {
@@ -122,28 +129,54 @@ function cartas(juegoSorteado) {
           },
         },
       });
+
+      let botonSalir = document.createElement("button");
+      let icono = document.createElement("i");
+
+      botonSalir.classList.add("carta__botonSalir");
+      icono.classList.add("fas", "fa-angle-down");
+      botonSalir.appendChild(icono);
+      document.querySelector(".carousel").appendChild(botonSalir);
+      botonSalir.addEventListener("click", () => {
+        let acciones = [];
+        acciones[0] = {
+          label: "Ver resultado",
+          accion: () => {
+            console.log("Resultado");
+            document.querySelector(".modalPopup__fondo").remove();
+            document.querySelector(".carousel").remove();
+            let pantallaResultado = new PantallaResultado(juegoSorteado);
+            container.appendChild(pantallaResultado.modelo);
+          },
+        };
+        acciones[1] = {
+          label: "Volver a jugar",
+          accion: () => {
+            console.log("Volver a jugar");
+            document.querySelector(".modalPopup__fondo").remove();
+            document.querySelector(".carousel").remove();
+            pantallaInicial.inicializar();
+            container.appendChild(pantallaInicial.modelo);
+          },
+        };
+        modalAcciones(acciones);
+      });
     });
 
     return resolve("Terminamos Cartas");
   });
 }
-function modalAcciones() {
-  let acciones = [];
-  acciones[0] = { label: "Ver resultado", accion: () => alert("Resultado") };
-  acciones[1] = {
-    label: "Volver a jugar",
-    accion: () => alert("Volver a jugar"),
-  };
-
+function modalAcciones(acciones) {
   let modalPopup = new ModalPopup(acciones);
   container.appendChild(modalPopup.modelo);
 }
+
+/*****************************************/
+/***********Aca empezamos todo************/
+/*****************************************/
 const container = document.querySelector(".container");
-
 let pantallaInicial = new PantallaInicial();
-
 container.appendChild(pantallaInicial.modelo);
-
 let btn_inicio__empezar = document.getElementById("inicio__empezar");
 
 btn_inicio__empezar.addEventListener("click", () => {

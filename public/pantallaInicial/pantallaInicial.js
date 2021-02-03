@@ -15,7 +15,7 @@ export default class PantallaInicial {
     unInput.id = "jugador" + nroJugador;
     unInput.placeholder = "jugador " + nroJugador;
     unInput.setAttribute("required", true);
-    unInput.setAttribute("maxlength",20);
+    unInput.setAttribute("maxlength", 20);
     unLabel.for = "jugador" + nroJugador;
     unLabel.textContent = "Como se llama?";
     divValid.classList.add("valid-tooltip");
@@ -47,5 +47,10 @@ export default class PantallaInicial {
     unForm.append(inputJugador1, inputJugador2, unBoton);
     divInicio.append(unTitulo, unForm);
     return divInicio;
+  }
+
+  inicializar() {
+    this.modelo.querySelector("#jugador1").value = "";
+    this.modelo.querySelector("#jugador2").value = "";
   }
 }

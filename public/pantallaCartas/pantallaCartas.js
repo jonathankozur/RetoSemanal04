@@ -1,6 +1,6 @@
 import { cards } from "../js/sakura-cards-db.js";
 export default class PantallaCartas {
-    constructor(nombreJugadores,cartasSorteadas) {
+  constructor(nombreJugadores, cartasSorteadas) {
     this.nombreJugadores = nombreJugadores;
     this.cartasSorteadas = cartasSorteadas;
     this.modelo = this.modelo(cartasSorteadas);
@@ -23,7 +23,7 @@ export default class PantallaCartas {
       nombreJugador + " " + numeroCarta + "/" + totalCartas;
     unaImagen.classList.add("carta__imagen");
     unaImagen.src = "clow_cards_min/Clow" + carta.name + "-min.jpg";
-    unaImagen.alt = "imagen ClowThunder";
+    unaImagen.alt = "imagen Clow" + carta.name;
     unTitulo.classList.add("carta__titulo");
     unTitulo.textContent = carta.name;
     unMensaje.classList.add("carta__mensaje");
@@ -36,6 +36,7 @@ export default class PantallaCartas {
 
   modelo(cartasSorteadas) {
     let unCarousel = document.createElement("div");
+
     unCarousel.classList.add("carousel");
     unCarousel.classList.add("off");
 

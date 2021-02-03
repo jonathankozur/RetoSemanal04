@@ -55,6 +55,3 @@
   animation: shadow-drop-2-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   background: linear-gradient(145deg, #8e5c78, #a96d8e);
 }
-/* .inicio__empezar::selection {
-  color: aqua;
-} */
