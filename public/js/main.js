@@ -123,7 +123,21 @@ function cartas(juegoSorteado) {
               console.log("Llego al final del carrousel");
               timeOutPromise(tiempoAparicionModal).then((response) => {
                 console.log(response);
-                modalAcciones();
+                let acciones = [];
+                acciones[0] = {
+                  label: "Ver resultado",
+                  accion: () => resultado(juegoSorteado),
+                };
+                acciones[1] = {
+                  label: "Volver a jugar",
+                  accion: () => {
+                    console.log("Volver a jugar");
+                    document.querySelector(".modalPopup__fondo").remove();
+                    document.querySelector(".carousel").remove();
+                    volverJugar()
+                  },
+                };
+                modalAcciones(acciones);
               });
             }
           },
@@ -141,13 +155,7 @@ function cartas(juegoSorteado) {
         let acciones = [];
         acciones[0] = {
           label: "Ver resultado",
-          accion: () => {
-            console.log("Resultado");
-            document.querySelector(".modalPopup__fondo").remove();
-            document.querySelector(".carousel").remove();
-            let pantallaResultado = new PantallaResultado(juegoSorteado);
-            container.appendChild(pantallaResultado.modelo);
-          },
+          accion: () => resultado(juegoSorteado),
         };
         acciones[1] = {
           label: "Volver a jugar",
@@ -155,8 +163,7 @@ function cartas(juegoSorteado) {
             console.log("Volver a jugar");
             document.querySelector(".modalPopup__fondo").remove();
             document.querySelector(".carousel").remove();
-            pantallaInicial.inicializar();
-            container.appendChild(pantallaInicial.modelo);
+            volverJugar()
           },
         };
         modalAcciones(acciones);
@@ -166,9 +173,37 @@ function cartas(juegoSorteado) {
     return resolve("Terminamos Cartas");
   });
 }
+
 function modalAcciones(acciones) {
   let modalPopup = new ModalPopup(acciones);
   container.appendChild(modalPopup.modelo);
+}
+
+function resultado(juegoSorteado){
+  console.log("Resultado");
+  document.querySelector(".modalPopup__fondo").remove();
+  document.querySelector(".carousel").remove();
+
+  let accionesPantallaResultado = {
+    salir:()=>{
+      console.log('Salir')
+      document.querySelector(".resultado").remove();
+      volverJugar()
+    },
+    guardar:()=>{
+      console.log('Guardar')
+      pantallaInicial.agregarPartida(juegoSorteado)
+      document.querySelector(".resultado").remove();
+      volverJugar()
+    }
+  }
+  let pantallaResultado = new PantallaResultado(juegoSorteado,accionesPantallaResultado);
+  container.appendChild(pantallaResultado.modelo);
+}
+
+function volverJugar(){
+  pantallaInicial.inicializar();
+  container.appendChild(pantallaInicial.modelo);
 }
 
 /*****************************************/
@@ -177,6 +212,7 @@ function modalAcciones(acciones) {
 const container = document.querySelector(".container");
 let pantallaInicial = new PantallaInicial();
 container.appendChild(pantallaInicial.modelo);
+// pantallaInicial.agregarPartida()
 let btn_inicio__empezar = document.getElementById("inicio__empezar");
 
 btn_inicio__empezar.addEventListener("click", () => {

@@ -1,19 +1,19 @@
 import { cards } from "../js/sakura-cards-db.js";
 export default class pantallaResultado {
-  constructor(juego) {
+  constructor(juego,acciones) {
     console.log(juego);
     this.matriz = this.definirMatriz();
     this.cartasSorteadas = juego.cartasSorteadas;
     this.nombreJugadores = juego.jugadores;
     this.ganador = this.resultado(juego.cartasSorteadas);
-    this.modelo = this.modelo(juego.cartasSorteadas);
+    this.acciones = acciones
+    this.modelo = this.modelo(juego.cartasSorteadas,acciones);
   }
   definirMatriz() {
     /*red > green */
     /*green > purple */
     /*purple > blue */
     /*blue > red */
-    // let matriz = Array(4).fill(Array(4));
     let matriz = Array(4)
       .fill()
       .map(() => Array(4).fill());
@@ -85,15 +85,22 @@ export default class pantallaResultado {
   cartasJugador(contenedor, jugador) {
     jugador.cartas.forEach((indiceCarta, nroCarta) => {
       let carta = cards[indiceCarta];
-      let unaCarta = document.createElement("img");
-      unaCarta.classList.add("cartas__carta");
-      unaCarta.src = "clow_cards_min/Clow" + carta.name + "-min.jpg";
-      unaCarta.alt = "imagen Clow" + carta.name;
-      contenedor.appendChild(unaCarta);
+      let cartaContainer = document.createElement('div')
+      let imagen = document.createElement("img");
+      let hoverImagen = document.createElement('div')
+
+      cartaContainer.classList.add('cartas__container')
+      imagen.classList.add("cartas__carta");
+      imagen.src = "clow_cards_min/Clow" + carta.name + "-min.jpg";
+      imagen.alt = "imagen Clow" + carta.name;
+      hoverImagen.classList.add('cartas__tipo','cartas__tipo--'+carta.group)
+
+      cartaContainer.append(imagen,hoverImagen)
+      contenedor.appendChild(cartaContainer);
     });
   }
 
-  modelo(cartasSorteadas) {
+  modelo(cartasSorteadas,acciones) {
     let resultado = document.createElement("div");
     let jugador1 = document.createElement("h3");
     let jugador2 = document.createElement("h3");
@@ -112,15 +119,19 @@ export default class pantallaResultado {
     cartasJugador1.classList.add("resultado__cartas");
     cartasJugador2.classList.add("resultado__cartas");
     ganador.classList.add("resultado__jugador");
+    ganador.classList.add("heartbeat");
     ganador.textContent = this.ganador;
     this.cartasJugador(cartasJugador1, cartasSorteadas[0]);
     this.cartasJugador(cartasJugador2, cartasSorteadas[1]);
-
     botonera.classList.add("resultado__botonera");
     botonGuardar.classList.add("botonera__boton");
     botonGuardar.textContent = "Guardar";
     botonSalir.classList.add("botonera__boton");
     botonSalir.textContent = "Salir";
+    botonGuardar.addEventListener("click", () => acciones.guardar());
+    botonSalir.addEventListener("click", () => acciones.salir());
+
+
     botonera.append(botonGuardar, botonSalir);
 
     resultado.append(

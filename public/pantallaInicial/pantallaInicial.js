@@ -1,6 +1,7 @@
 export default class PantallaInicial {
   constructor() {
     this.modelo = this.modelo();
+    this.partidasGuardadas = []
   }
   inputJugador(nroJugador) {
     let unDiv = document.createElement("div");
@@ -15,7 +16,7 @@ export default class PantallaInicial {
     unInput.id = "jugador" + nroJugador;
     unInput.placeholder = "jugador " + nroJugador;
     unInput.setAttribute("required", true);
-    unInput.setAttribute("maxlength", 20);
+    unInput.setAttribute("maxlength", 15);
     unLabel.for = "jugador" + nroJugador;
     unLabel.textContent = "Como se llama?";
     divValid.classList.add("valid-tooltip");
@@ -25,6 +26,29 @@ export default class PantallaInicial {
 
     unDiv.append(unInput, unLabel, divValid, divInvalid);
     return unDiv;
+  }
+
+  agregarPartida(juegoSorteado){
+    if (this.partidasGuardadas.length == 0){
+      this.modelo.querySelector('.inicio__partidas--titulo').classList.remove('off')
+      this.modelo.querySelector('.partidas').classList.remove('off')
+    }
+    if (this.partidasGuardadas.length >= 4){
+      this.modelo.querySelector('.partidas__partida').remove()
+      this.partidasGuardadas.shift()
+    }
+    this.partidasGuardadas.push(juegoSorteado)
+    let partida = document.createElement('li')
+    let partida_nombre = document.createElement('h4')
+
+    partida.classList.add('partidas__partida')
+    partida_nombre.classList.add('partidas__partida--nombre')
+    partida_nombre.textContent =  juegoSorteado.jugadores[0]+' vs '+juegoSorteado.jugadores[1]
+    partida_nombre.setAttribute('partida',0)
+
+    partida.appendChild(partida_nombre)
+
+    this.modelo.querySelector('.partidas').appendChild(partida)
   }
 
   modelo() {
@@ -44,8 +68,19 @@ export default class PantallaInicial {
     unBoton.type = "button";
     unBoton.id = "inicio__empezar";
 
+    /*Partidas Guardadas*/
+    let partidas_titulo = document.createElement('h3')
+    let partidas = document.createElement('ul')
+
+    partidas_titulo.classList.add('inicio__partidas--titulo')
+    partidas_titulo.classList.add('off')
+    partidas_titulo.textContent = 'Partidas Guardadas'
+    partidas.classList.add('partidas')
+    partidas.classList.add('off')
+
     unForm.append(inputJugador1, inputJugador2, unBoton);
-    divInicio.append(unTitulo, unForm);
+    divInicio.append(unTitulo, unForm, partidas_titulo, partidas);
+
     return divInicio;
   }
 

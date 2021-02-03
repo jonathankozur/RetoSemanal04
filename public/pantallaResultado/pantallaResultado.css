@@ -14,7 +14,7 @@
 .cartas__carta {
   width: 100px;
   height: 100px;
-  border-radius: 25px;
+  border-radius: 50px;
   object-fit: cover;
 }
 .resultado__final {
@@ -71,5 +71,79 @@
   100% {
     transform: translateZ(50px);
     box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+  }
+}
+
+
+.heartbeat {
+	animation: heartbeat 1.5s ease-in-out infinite both;
+}
+
+ @keyframes heartbeat {
+  from {
+    transform: scale(1);
+    transform-origin: center center;
+    animation-timing-function: ease-out;
+  }
+  10% {
+    transform: scale(0.91);
+    animation-timing-function: ease-in;
+  }
+  17% {
+    transform: scale(0.98);
+    animation-timing-function: ease-out;
+  }
+  33% {
+    transform: scale(0.87);
+    animation-timing-function: ease-in;
+  }
+  45% {
+    transform: scale(1);
+    animation-timing-function: ease-out;
+  }
+}
+
+
+.cartas__container{
+  display: flex;
+flex-flow: row nowrap;
+justify-content: center;
+align-items: center;
+}
+.cartas__tipo{
+  display: flex;
+flex-flow: row nowrap;
+justify-content: center;
+align-items: center;
+  position: absolute;
+  width: 100px;
+height: 100px;
+border-radius: 50px;
+object-fit: cover;
+opacity: .0;
+}
+.cartas__tipo--Red{
+  background-color: red;
+}
+.cartas__tipo--Green{
+  background-color: green;
+}
+.cartas__tipo--Blue{
+  background-color: blue;
+}
+.cartas__tipo--Purple{
+  background-color: purple;
+}
+.cartas__tipo:hover{
+  animation: cartas__tipo_hover 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
+}
+
+@keyframes cartas__tipo_hover {
+  0% {
+    opacity: .0;
+  }
+  100% {
+    opacity: .5;
   }
 }
