@@ -15,7 +15,7 @@
 .flickity-page-dots {
   bottom: 15px;
 }
-.flickity-page-dots .dot{
+.flickity-page-dots .dot {
   background-color: #9e6685;
 }
 
@@ -31,7 +31,6 @@
 
 .carta__jugador {
   max-width: 90%;
-  overflow: hidden;
   margin: 10px 0px 5px 0px;
   font-size: 20px;
   padding: 5px 15px 5px 15px;

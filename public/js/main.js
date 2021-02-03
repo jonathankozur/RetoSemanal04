@@ -1,8 +1,10 @@
 import PantallaInicial from "../pantallaInicial/pantallaInicial.js";
 import PantallaCartas from "../pantallaCartas/pantallaCartas.js";
 import PantallaProcesando from "../pantallaProcesando/pantallaProcesando.js";
+import ModalPopup from "../modalPopup/modalPopup.js";
 
 const tiempoPantallaCarga = 1000;
+const tiempoAparicionModal = 1000;
 
 function timeOutPromise(tiempo) {
   return new Promise(function (resolve, reject) {
@@ -36,8 +38,8 @@ function validar(inputs) {
 
   let valido = true;
 
-  inputs.forEach(input => {
-    valido = valido&esNulo(input)
+  inputs.forEach((input) => {
+    valido = valido & esNulo(input);
   });
 
   if (valido) {
@@ -49,26 +51,29 @@ function validar(inputs) {
 
 function empezar() {
   return new Promise(function (resolve, reject) {
-    let jugador1 = document.getElementById("jugador1")
-    let jugador2 = document.getElementById("jugador2")
-    let inputs = [jugador1, jugador2]
-    let jugadores = Array(0)
+    let jugador1 = document.getElementById("jugador1");
+    let jugador2 = document.getElementById("jugador2");
+    let inputs = [jugador1, jugador2];
+    let jugadores = Array(0);
     let cartasPorJugador = 3;
     if (!validar(inputs)) {
       return reject("Fallo la validación");
     }
-    inputs.forEach(input => {
+    inputs.forEach((input) => {
       jugadores.push(input.value);
     });
 
     pantallaInicial.modelo.remove();
-    return resolve({jugadores,cartasPorJugador});
+    return resolve({ jugadores, cartasPorJugador });
   });
 }
 
 function procesando(juego) {
   return new Promise(function (resolve, reject) {
-    let pantallaProcesando = new PantallaProcesando(juego.jugadores,juego.cartasPorJugador);
+    let pantallaProcesando = new PantallaProcesando(
+      juego.jugadores,
+      juego.cartasPorJugador
+    );
     container.appendChild(pantallaProcesando.modelo);
     container.classList.add("color-change-2x");
     timeOutPromise(tiempoPantallaCarga).then((response) => {
@@ -77,8 +82,8 @@ function procesando(juego) {
       pantallaProcesando.modelo.remove();
 
       return resolve({
-        jugadores:juego.jugadores,
-        cartasSorteadas:pantallaProcesando.cartasSorteadas
+        jugadores: juego.jugadores,
+        cartasSorteadas: pantallaProcesando.cartasSorteadas,
       });
     });
   });
@@ -86,10 +91,16 @@ function procesando(juego) {
 
 function cartas(juegoSorteado) {
   return new Promise(function (resolve, reject) {
-    let pantallaCartas = new PantallaCartas(juegoSorteado.jugadores, juegoSorteado.cartasSorteadas);
+    let pantallaCartas = new PantallaCartas(
+      juegoSorteado.jugadores,
+      juegoSorteado.cartasSorteadas
+    );
 
-    let largoMatriz = (acum,valorActual) =>  acum + valorActual.cartas.length
-    let cantidadCartasTotal = juegoSorteado.cartasSorteadas.reduce(largoMatriz,0)
+    let largoMatriz = (acum, valorActual) => acum + valorActual.cartas.length;
+    let cantidadCartasTotal = juegoSorteado.cartasSorteadas.reduce(
+      largoMatriz,
+      0
+    );
 
     container.appendChild(pantallaCartas.modelo);
 
@@ -103,16 +114,30 @@ function cartas(juegoSorteado) {
           change: function (index) {
             if (cantidadCartasTotal == index + 1) {
               console.log("Llego al final del carrousel");
+              timeOutPromise(tiempoAparicionModal).then((response) => {
+                console.log(response);
+                modalAcciones();
+              });
             }
           },
         },
       });
     });
 
-    return resolve("eso");
+    return resolve("Terminamos Cartas");
   });
 }
+function modalAcciones() {
+  let acciones = [];
+  acciones[0] = { label: "Ver resultado", accion: () => alert("Resultado") };
+  acciones[1] = {
+    label: "Volver a jugar",
+    accion: () => alert("Volver a jugar"),
+  };
 
+  let modalPopup = new ModalPopup(acciones);
+  container.appendChild(modalPopup.modelo);
+}
 const container = document.querySelector(".container");
 
 let pantallaInicial = new PantallaInicial();
@@ -124,13 +149,11 @@ let btn_inicio__empezar = document.getElementById("inicio__empezar");
 btn_inicio__empezar.addEventListener("click", () => {
   empezar()
     .then((response) => {
-      console.log("Resolvimos empezar()",response);
-      procesando(response)
-    .then((response) => {
-        console.log("Resolvimos procesando()",response);
-        cartas(response)
-    .then((response) => {
-          console.log("Resolvimos cartas()",response);
+      console.log("Resolvimos empezar()", response);
+      procesando(response).then((response) => {
+        console.log("Resolvimos procesando()", response);
+        cartas(response).then((response) => {
+          console.log("Resolvimos cartas()", response);
         });
       });
     })

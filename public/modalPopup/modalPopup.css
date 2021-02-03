@@ -1,0 +1,104 @@
+.modalPopup__fondo {
+  position: fixed;
+  width: 95vw;
+  max-width: 405px;
+  height: 95vh;
+  margin: 15px;
+  z-index: 1000;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  background-color: rgba(180, 132, 132, 0.7);
+}
+.modalPopup__cuadro {
+  width: 60%;
+  padding: 10px;
+  z-index: 1001;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  background: #9e6685;
+  box-shadow: 10px 10px 20px rgba(150, 97, 126, 0.6),
+    -10px -10px 20px rgba(166, 107, 140, 0.6);
+}
+.modalPopup__boton {
+  width: 80%;
+  min-height: 40px;
+  flex-grow: 1;
+  margin: 10px 0px 10px 0px;
+  z-index: 1002;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #a96d8e, #8e5c78);
+  box-shadow: 10px 10px 20px #865771, -10px -10px 20px #b67599;
+  border: none;
+  font-size: 15px;
+}
+.modalPopup__boton:hover {
+  background: #9e6685;
+}
+
+.modalPopup__boton:active {
+  animation: modalPopup__boton_active 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
+  background: linear-gradient(145deg, #8e5c78, #a96d8e);
+}
+
+@keyframes modalPopup__boton_active {
+  0% {
+    transform: translateZ(0);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+  100% {
+    transform: translateZ(50px);
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+  }
+}
+
+.scale-in-tr {
+  animation: scale-in-tr 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+@keyframes scale-in-tr {
+  0% {
+    transform: scale(0);
+    transform-origin: 100% 0%;
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    transform-origin: 100% 0%;
+    opacity: 1;
+  }
+}
+
+.scale-down-tr {
+  animation: scale-down-tr 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+@keyframes scale-down-tr {
+  0% {
+    transform: scale(1);
+    transform-origin: 100% 0%;
+  }
+  100% {
+    transform: scale(0.5);
+    transform-origin: 100% 0%;
+  }
+}
+.scale-out-tr {
+  animation: scale-out-tr 0.4s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+}
+@keyframes scale-out-tr {
+  0% {
+    transform: scale(1);
+    transform-origin: 100% 0%;
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0);
+    transform-origin: 100% 0%;
+    opacity: 1;
+  }
+}
