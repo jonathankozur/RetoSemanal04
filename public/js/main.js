@@ -8,7 +8,7 @@ import PantallaResultado from "../pantallaResultado/pantallaResultado.js";
 /***********algunas variables*************/
 /*****************************************/
 let tiempoPantallaCarga = 3000;
-let tiempoAparicionModal = 3000;
+let tiempoAparicionModal = 5000;
 let cartasPorJugador = 3;
 /*****************************************/
 /***************Functions*****************/
@@ -120,9 +120,15 @@ function cartas(juegoSorteado, accionesModal) {
           change: function (index) {
             if (cantidadCartasTotal == index + 1) {
               console.log("Llego al final del carrousel");
-              timeOutPromise(tiempoAparicionModal).then((response) =>
-                accionesModal(juegoSorteado)
-              );
+              timeOutPromise(tiempoAparicionModal).then((response) => {
+                console.log("Llego al final del carrousel. TERMINO EL TIMER.");
+                if (
+                  !document.querySelector(".modalPopup__fondo") &&
+                  document.querySelector(".carousel")
+                ) {
+                  accionesModal(juegoSorteado);
+                }
+              });
             }
           },
         },
