@@ -72,12 +72,17 @@ export default class pantallaResultado {
       let cartaJugador2 = cards[cartasSorteadas[1].cartas[nroCarta]];
       resultado += this.matchColores(cartaJugador1.group, cartaJugador2.group);
     });
-    if (resultado < 0) {
-      ganador = "Ganó " + this.nombreJugadores[0];
-    } else if (resultado > 0) {
-      ganador = "Ganó " + this.nombreJugadores[1];
-    } else {
-      ganador = "Empate";
+    // if (resultado < 0) {
+    //   ganador = "Ganó " + this.nombreJugadores[0];
+    // } else if (resultado > 0) {
+    //   ganador = "Ganó " + this.nombreJugadores[1];
+    // } else {
+    //   ganador = "Empate";
+    // }
+    if (resultado>0){
+      ganador = 'MATCH'
+    }else{
+      ganador = 'NO MATCH'
     }
     return ganador;
   }
@@ -125,6 +130,7 @@ export default class pantallaResultado {
     this.cartasJugador(cartasJugador2, cartasSorteadas[1]);
     botonera.classList.add("resultado__botonera");
     botonGuardar.classList.add("botonera__boton");
+    botonGuardar.id = 'boton_guardar'
     botonGuardar.textContent = "Guardar";
     botonSalir.classList.add("botonera__boton");
     botonSalir.textContent = "Salir";

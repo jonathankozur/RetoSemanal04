@@ -96,7 +96,7 @@ function procesando(juego) {
   });
 }
 
-function cartas(juegoSorteado) {
+function cartas(juegoSorteado,accionesModal) {
   return new Promise(function (resolve, reject) {
     let pantallaCartas = new PantallaCartas(
       juegoSorteado.jugadores,
@@ -121,24 +121,7 @@ function cartas(juegoSorteado) {
           change: function (index) {
             if (cantidadCartasTotal == index + 1) {
               console.log("Llego al final del carrousel");
-              timeOutPromise(tiempoAparicionModal).then((response) => {
-                console.log(response);
-                let acciones = [];
-                acciones[0] = {
-                  label: "Ver resultado",
-                  accion: () => resultado(juegoSorteado),
-                };
-                acciones[1] = {
-                  label: "Volver a jugar",
-                  accion: () => {
-                    console.log("Volver a jugar");
-                    document.querySelector(".modalPopup__fondo").remove();
-                    document.querySelector(".carousel").remove();
-                    volverJugar()
-                  },
-                };
-                modalAcciones(acciones);
-              });
+              timeOutPromise(tiempoAparicionModal).then((response) => accionesModal(juegoSorteado));
             }
           },
         },
@@ -151,27 +134,50 @@ function cartas(juegoSorteado) {
       icono.classList.add("fas", "fa-angle-down");
       botonSalir.appendChild(icono);
       document.querySelector(".carousel").appendChild(botonSalir);
-      botonSalir.addEventListener("click", () => {
-        let acciones = [];
-        acciones[0] = {
-          label: "Ver resultado",
-          accion: () => resultado(juegoSorteado),
-        };
-        acciones[1] = {
-          label: "Volver a jugar",
-          accion: () => {
-            console.log("Volver a jugar");
-            document.querySelector(".modalPopup__fondo").remove();
-            document.querySelector(".carousel").remove();
-            volverJugar()
-          },
-        };
-        modalAcciones(acciones);
-      });
+      botonSalir.addEventListener("click", () => accionesModal(juegoSorteado));
     });
 
     return resolve("Terminamos Cartas");
   });
+}
+
+function ModalAccionesJuegoGuardado(juegoSorteado){
+  let acciones = [];
+  acciones[0] = {
+    label: "Ver resultado",
+    accion: () => {
+      resultado(juegoSorteado)
+      document.querySelector('#boton_guardar').classList.add('off')
+    },
+  };
+  acciones[1] = {
+    label: "Volver",
+    accion: () => {
+      console.log("Volver a jugar");
+      document.querySelector(".modalPopup__fondo").remove();
+      document.querySelector(".carousel").remove();
+      volverJugar()
+    },
+  };
+  modalAcciones(acciones);
+}
+
+function ModalAccionesJuegoNuevo(juegoSorteado){
+  let acciones = [];
+  acciones[0] = {
+    label: "Ver resultado",
+    accion: () => resultado(juegoSorteado),
+  };
+  acciones[1] = {
+    label: "Volver a jugar",
+    accion: () => {
+      console.log("Volver a jugar");
+      document.querySelector(".modalPopup__fondo").remove();
+      document.querySelector(".carousel").remove();
+      volverJugar()
+    },
+  };
+  modalAcciones(acciones);
 }
 
 function modalAcciones(acciones) {
@@ -189,10 +195,17 @@ function resultado(juegoSorteado){
       console.log('Salir')
       document.querySelector(".resultado").remove();
       volverJugar()
+      // document.querySelector('#boton_guardar').classList.remove('off')
     },
     guardar:()=>{
       console.log('Guardar')
-      pantallaInicial.agregarPartida(juegoSorteado)
+      let verPartida = ()=>{
+        console.log('Ver partida')
+        pantallaInicial.modelo.remove();
+        let accion = (juegoSorteado) => ModalAccionesJuegoGuardado(juegoSorteado) /*ModalAccionesJuegoNuevo(juegoSorteado)*/
+        cartas(juegoSorteado,accion)
+      }
+      pantallaInicial.agregarPartida(juegoSorteado,verPartida)
       document.querySelector(".resultado").remove();
       volverJugar()
     }
@@ -212,7 +225,6 @@ function volverJugar(){
 const container = document.querySelector(".container");
 let pantallaInicial = new PantallaInicial();
 container.appendChild(pantallaInicial.modelo);
-// pantallaInicial.agregarPartida()
 let btn_inicio__empezar = document.getElementById("inicio__empezar");
 
 btn_inicio__empezar.addEventListener("click", () => {
@@ -221,7 +233,8 @@ btn_inicio__empezar.addEventListener("click", () => {
       console.log("Resolvimos empezar()", response);
       procesando(response).then((response) => {
         console.log("Resolvimos procesando()", response);
-        cartas(response).then((response) => {
+        let accion = (juegoSorteado) => ModalAccionesJuegoNuevo(juegoSorteado)
+        cartas(response,accion).then((response) => {
           console.log("Resolvimos cartas()", response);
         });
       });

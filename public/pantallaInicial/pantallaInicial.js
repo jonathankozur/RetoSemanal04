@@ -18,7 +18,7 @@ export default class PantallaInicial {
     unInput.setAttribute("required", true);
     unInput.setAttribute("maxlength", 15);
     unLabel.for = "jugador" + nroJugador;
-    unLabel.textContent = "Como se llama?";
+    unLabel.textContent = "Jugador "+nroJugador;
     divValid.classList.add("valid-tooltip");
     divValid.textContent = "Bien !!!";
     divInvalid.classList.add("invalid-tooltip");
@@ -28,7 +28,7 @@ export default class PantallaInicial {
     return unDiv;
   }
 
-  agregarPartida(juegoSorteado){
+  agregarPartida(juegoSorteado,verPartida){
     if (this.partidasGuardadas.length == 0){
       this.modelo.querySelector('.inicio__partidas--titulo').classList.remove('off')
       this.modelo.querySelector('.partidas').classList.remove('off')
@@ -40,6 +40,11 @@ export default class PantallaInicial {
     this.partidasGuardadas.push(juegoSorteado)
     let partida = document.createElement('li')
     let partida_nombre = document.createElement('h4')
+
+    partida.addEventListener('click',(e)=>{
+      console.log(juegoSorteado)
+      verPartida()
+    })
 
     partida.classList.add('partidas__partida')
     partida_nombre.classList.add('partidas__partida--nombre')
@@ -61,7 +66,7 @@ export default class PantallaInicial {
 
     divInicio.classList.add("inicio");
     unTitulo.classList.add("inicio__titulo");
-    unTitulo.textContent = "Oracle of Clow Cards";
+    unTitulo.textContent = "Cartas Clow";
     unForm.classList.add("inicio__formulario");
     unBoton.classList.add("inicio__empezar");
     unBoton.textContent = "Voy a tener suerte";

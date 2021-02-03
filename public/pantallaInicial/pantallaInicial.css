@@ -3,6 +3,7 @@
       flex-flow: column nowrap;
       justify-content: center;
       align-items: center;
+      width: 90%;
 }
 
 .inicio__formulario{
@@ -19,10 +20,6 @@
 }
 .inicio__jugador{
   width: 80%;
-  display: flex;
-      flex-flow: column nowrap;
-      justify-content: center;
-      align-items: center;
 }
 .inicio__input {
   width: 100%;
